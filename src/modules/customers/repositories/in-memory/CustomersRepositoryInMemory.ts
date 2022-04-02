@@ -1,5 +1,5 @@
+/*eslint no-param-reassign: ["error", { "props": false }]*/
 import { ICreateCustomerDTO } from "@modules/customers/dtos/ICreateCustomerDTO";
-import { IUpdateCustomerDTO } from "@modules/customers/dtos/IUpdateCustomerDTO";
 import { Customer } from "@modules/customers/entities/Customer";
 import { ICustomersRepository } from "../ICustomersRepository";
 
@@ -15,16 +15,27 @@ export class CustomerRepositoryInMemory implements ICustomersRepository {
         const customer = await this.customers.find(customer => customer.id === id);
         return customer;
     }
-    async create({name, email, address}: ICreateCustomerDTO): Promise<Customer> {
+    async create({nome, email, endereco}: ICreateCustomerDTO): Promise<Customer> {
         const customer = new Customer();        
-        await Object.assign(customer, {name, email, address});
+        await Object.assign(customer, {nome, email, endereco});
         this.customers.push(customer);
         return customer;
     }
-    async update(id: string, {name, email, address}: IUpdateCustomerDTO): Promise<Customer> {
+    async update({id, nome, email, endereco}: ICreateCustomerDTO): Promise<Customer> {
         const customer = await this.customers.find(customer => customer.id === id);
-        Object.assign(customer, {name, email, address});
+
+        if(!nome) nome = customer.nome;
+
+        if(!email) email = customer.email;
+
+        if(!endereco) endereco = customer.endereco;
+        
+        await this.customers.splice(this.customers.indexOf(customer), 1);
+        
+        Object.assign(customer, {id, nome, email, endereco, updateAt: new Date()});
+        
         await this.customers.push(customer);
+
         return customer;
     }
     async delete(id: string): Promise<void> {

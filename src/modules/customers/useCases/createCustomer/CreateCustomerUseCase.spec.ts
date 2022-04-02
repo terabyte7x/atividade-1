@@ -11,12 +11,12 @@ describe("CustomersUseCase", () => {
     createCustomerUseCase = new CreateCustomerUseCase(customerRepositoryInMemory);
   })
 
-  it("should create a new cliente", async () => {
+  it("should create a new customer", async () => {
 
     const customer = await createCustomerUseCase.execute({
-      name: "Teste",
+      nome: "Teste",
       email: "abc@abc.com",
-      address: "Rua Teste"
+      endereco: "Rua Teste"
     })
 
     expect(customer).toHaveProperty("id");

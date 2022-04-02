@@ -1,8 +1,5 @@
 import "dotenv/config";
 import "reflect-metadata";
-import upload from "@config/upload";
-import * as Sentry from "@sentry/node";
-import * as Tracing from "@sentry/tracing";
 import cors from "cors";
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";

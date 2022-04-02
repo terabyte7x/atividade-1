@@ -10,9 +10,9 @@ export class CreateCustomerUseCase {
         @inject("CustomerRepositoryInMemory")
         private customerRepository: ICustomersRepository
     ){}
-    async execute({name, email, address}: ICreateCustomerDTO): Promise<Customer>{
+    async execute({nome, email, endereco}: ICreateCustomerDTO): Promise<Customer>{
 
-        const customer = await this.customerRepository.create({name, email, address});
+        const customer = await this.customerRepository.create({nome, email, endereco});
         return customer;
     }
 

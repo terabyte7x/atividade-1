@@ -1,7 +1,8 @@
 export interface ICreateCustomerDTO {
-
-    name: string;
-    email: string;
-    address: string;
+    
+    id?: string;
+    nome?: string;
+    email?: string;
+    endereco?: string;
 
 }
