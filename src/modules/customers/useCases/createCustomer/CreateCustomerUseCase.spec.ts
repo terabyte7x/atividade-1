@@ -2,24 +2,23 @@ import { CustomerRepositoryInMemory } from "../../repositories/in-memory/Custome
 import { CreateCustomerUseCase } from "./CreateCustomerUseCase";
 
 describe("CustomersUseCase", () => {
+    let createCustomerUseCase: CreateCustomerUseCase;
+    let customerRepositoryInMemory: CustomerRepositoryInMemory;
 
-  let createCustomerUseCase: CreateCustomerUseCase;
-  let customerRepositoryInMemory: CustomerRepositoryInMemory;
+    beforeAll(() => {
+        customerRepositoryInMemory = new CustomerRepositoryInMemory();
+        createCustomerUseCase = new CreateCustomerUseCase(
+            customerRepositoryInMemory
+        );
+    });
 
-  beforeAll(() => {
-    customerRepositoryInMemory = new CustomerRepositoryInMemory();
-    createCustomerUseCase = new CreateCustomerUseCase(customerRepositoryInMemory);
-  })
+    it("should create a new customer", async () => {
+        const customer = await createCustomerUseCase.execute({
+            nome: "Teste",
+            email: "abc@abc.com",
+            endereco: "Rua Teste",
+        });
 
-  it("should create a new customer", async () => {
-
-    const customer = await createCustomerUseCase.execute({
-      nome: "Teste",
-      email: "abc@abc.com",
-      endereco: "Rua Teste"
-    })
-
-    expect(customer).toHaveProperty("id");
-    
-  });
+        expect(customer).toHaveProperty("id");
+    });
 });

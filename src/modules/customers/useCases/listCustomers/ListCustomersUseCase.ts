@@ -6,8 +6,8 @@ import { inject, injectable } from "tsyringe";
 export class ListCustomersUseCase {
     constructor(
         @inject("CustomerRepositoryInMemory")
-        private customersRepository: ICustomersRepository,
-    ) { }
+        private customersRepository: ICustomersRepository
+    ) {}
 
     async execute(): Promise<Customer[]> {
         const customers = await this.customersRepository.all();

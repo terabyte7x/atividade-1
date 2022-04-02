@@ -6,4 +6,3 @@ container.registerSingleton<ICustomersRepository>(
     "CustomerRepositoryInMemory",
     CustomerRepositoryInMemory
 );
-
