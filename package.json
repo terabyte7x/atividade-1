@@ -4,6 +4,7 @@
     "main": "index.js",
     "license": "MIT",
     "scripts": {
+        "swagger-autogen": "node src/swagger.ts",
         "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
         "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
         "test": "jest --runInBand --detectOpenHandles",
@@ -21,6 +22,7 @@
         "jsonwebtoken": "^8.5.1",
         "pg": "^8.7.3",
         "reflect-metadata": "^0.1.13",
+        "swagger-autogen": "^2.20.8",
         "swagger-ui-express": "^4.1.6",
         "tsyringe": "^4.6.0",
         "typeorm": "^0.2.5",
